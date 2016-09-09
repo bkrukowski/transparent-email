@@ -9,12 +9,20 @@ abstract class MultiDomain implements ServiceInterface
 {
     public function getPrimaryEmail(string $email) : string
     {
+        if (!$this->isCaseSensitive()) {
+            $email = strtolower($email);
+        }
         return explode('@', $email)[0] . '@' . $this->getPrimaryDomain();
     }
 
     public function isDomainSupported(string $domain) : bool
     {
-        return in_array($domain, $this->getDomainList());
+        return in_array(strtolower($domain), $this->getDomainList());
+    }
+
+    protected function isCaseSensitive() : bool
+    {
+        return false;
     }
 
     abstract protected function getPrimaryDomain() : string;

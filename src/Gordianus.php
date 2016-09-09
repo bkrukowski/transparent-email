@@ -24,9 +24,12 @@ class Gordianus
 
     private $services;
 
-    public function __construct(array $services = self::ALL_SERVICES)
+    private $caseSensitiveLocalPart;
+
+    public function __construct(array $services = self::ALL_SERVICES, bool $caseSensitiveLocalPart = false)
     {
         $this->services = $services;
+        $this->caseSensitiveLocalPart = $caseSensitiveLocalPart;
     }
 
     /**
@@ -37,8 +40,10 @@ class Gordianus
     public function getPrimaryEmail(string $email)
     {
         $this->validateEmailAddress($email);
-        $email = strtolower($email);
-        list(, $domain) = explode('@', $email);
+        if (!$this->caseSensitiveLocalPart) {
+            $email = strtolower($email);
+        }
+        $domain = strtolower(explode('@', $email)[1]);
         $result = $email;
 
         foreach ($this->services as $serviceClass) {

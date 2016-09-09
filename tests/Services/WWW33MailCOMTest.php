@@ -22,6 +22,7 @@ class WWW33MailCOMTest extends \PHPUnit_Framework_TestCase
         return [
             ['foo.33mail.com', true],
             ['bar.33mail.com', true],
+            ['bar.33Mail.Com', true],
             ['foo.34mail.com', false],
             ['foo33mail.com', false],
         ];
@@ -43,6 +44,7 @@ class WWW33MailCOMTest extends \PHPUnit_Framework_TestCase
         return [
             ['qwerty@name.33mail.com', 'name@name.33mail.com'],
             ['lorem@ipsum.33mail.com', 'ipsum@ipsum.33mail.com'],
+            ['lorem@Ipsum.33mail.com', 'ipsum@ipsum.33mail.com'],
         ];
     }
 }

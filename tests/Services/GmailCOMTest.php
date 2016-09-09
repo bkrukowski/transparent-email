@@ -21,6 +21,7 @@ class GmailCOMTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['foo.bar@gmail.com', 'foobar@gmail.com'],
+            ['Foo.Bar@GMAIL.COM', 'foobar@gmail.com'],
             ['foobar+alias@gmail.com', 'foobar@gmail.com'],
             ['fo.ob.ar+alias@gmail.com', 'foobar@gmail.com'],
         ];
@@ -41,6 +42,7 @@ class GmailCOMTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['gmail.com', true],
+            ['gmail.COM', true],
             ['google.com', false],
             ['gmailcom', false],
             ['g.mail.com', false]
