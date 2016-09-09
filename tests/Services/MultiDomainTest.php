@@ -23,6 +23,7 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar']), 'gmail.com', false],
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'gmail.com']), 'gmail.com', true],
+            [$this->getMultiDomainMock('Foo.Bar', ['foo.bar', 'gmail.com']), 'gmail.com', true],
         ];
     }
 
@@ -42,21 +43,29 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2']), 'name@foo.bar', 'name@foo.bar'],
+            [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2'], true), 'Name@foo.bar', 'Name@foo.bar'],
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2']), 'name@foo.bar2', 'name@foo.bar'],
         ];
     }
 
-    private function getMultiDomainMock(string $primaryDomain, array $supportedDomains) : MultiDomain
+    private function getMultiDomainMock(
+        string $primaryDomain,
+        array $supportedDomains,
+        bool $caseSensitive = false) : MultiDomain
     {
-        return new class ($primaryDomain, $supportedDomains) extends MultiDomain {
+        return new class ($primaryDomain, $supportedDomains, $caseSensitive) extends MultiDomain {
+
             private $primaryDomain;
 
             private $supportedDomains;
 
-            public function __construct(string $primaryDomain, array $supportedDomains)
+            private $caseSensitive;
+
+            public function __construct(string $primaryDomain, array $supportedDomains, bool $caseSensitive)
             {
                 $this->primaryDomain = $primaryDomain;
                 $this->supportedDomains = $supportedDomains;
+                $this->caseSensitive = $caseSensitive;
             }
 
             protected function getDomainList() : array
@@ -67,6 +76,11 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
             protected function getPrimaryDomain() : string
             {
                 return $this->primaryDomain;
+            }
+
+            protected function isCaseSensitive() : bool
+            {
+                return $this->caseSensitive;
             }
         };
     }
