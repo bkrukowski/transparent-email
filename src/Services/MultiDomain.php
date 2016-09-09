@@ -20,6 +20,11 @@ abstract class MultiDomain implements ServiceInterface
         return in_array(strtolower($domain), $this->getDomainList());
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @return bool
+     */
     protected function isCaseSensitive() : bool
     {
         return false;
