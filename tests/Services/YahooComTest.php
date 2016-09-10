@@ -48,8 +48,8 @@ class YahooComTest extends \PHPUnit_Framework_TestCase
             ['jane.doe@yahoo.com', 'jane.doe@yahoo.com'],
             ['Jane.Doe@Yahoo.Com', 'jane.doe@yahoo.com'],
             ['Jane.Doe+receipts@YAHOO.COM', 'jane.doe+receipts@yahoo.com'],
-            ['Jane.Doe-receipts@YAHOO.COM', 'jane.doe-alias@yahoo.com'],
-            ['Jane.Doe-spam-alias@YAHOO.COM', 'jane.doe-alias@yahoo.com'],
+            ['Jane.Doe-receipts@YAHOO.COM', 'jane.doe@yahoo.com'],
+            ['Jane.Doe-spam-alias@YAHOO.COM', 'jane.doe@yahoo.com'],
         ];
     }
 }
