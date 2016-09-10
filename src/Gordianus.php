@@ -2,16 +2,16 @@
 
 namespace bkrukowski\Gordianus;
 
-use bkrukowski\Gordianus\Services\GmailCOM;
+use bkrukowski\Gordianus\Services\GmailCom;
 use bkrukowski\Gordianus\Services\ServiceInterface;
-use bkrukowski\Gordianus\Services\TlenPL;
-use bkrukowski\Gordianus\Services\WWW33MailCOM;
+use bkrukowski\Gordianus\Services\TlenPl;
+use bkrukowski\Gordianus\Services\Www33MailCom;
 
 class Gordianus
 {
-    const SERVICE_GMAIL_COM = GmailCOM::class;
-    const SERVICE_TLEN_PL = TlenPL::class;
-    const SERVICE_WWW_33MAIL_COM = WWW33MailCOM::class;
+    const SERVICE_GMAIL_COM = GmailCom::class;
+    const SERVICE_TLEN_PL = TlenPl::class;
+    const SERVICE_WWW_33MAIL_COM = Www33MailCom::class;
 
     /**
      * Constant ALL_SERVICES can contain different values depends on API version

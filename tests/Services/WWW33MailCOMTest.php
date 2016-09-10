@@ -2,9 +2,9 @@
 
 namespace bkrukowski\Gordianus\Tests\Services;
 
-use bkrukowski\Gordianus\Services\WWW33MailCOM;
+use bkrukowski\Gordianus\Services\Www33MailCom;
 
-class WWW33MailCOMTest extends \PHPUnit_Framework_TestCase
+class Www33MailComTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerIsDomainSupported
@@ -14,7 +14,7 @@ class WWW33MailCOMTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsDomainSupported(string $domain, bool $isSupported)
     {
-        $this->assertSame($isSupported, (new WWW33MailCOM())->isDomainSupported($domain));
+        $this->assertSame($isSupported, (new Www33MailCom())->isDomainSupported($domain));
     }
 
     public function providerIsDomainSupported()
@@ -36,7 +36,7 @@ class WWW33MailCOMTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $expectedEmail)
     {
-        $this->assertSame($expectedEmail, (new WWW33MailCOM())->getPrimaryEmail($inputEmail));
+        $this->assertSame($expectedEmail, (new Www33MailCom())->getPrimaryEmail($inputEmail));
     }
 
     public function providerGetPrimaryEmail()

@@ -6,7 +6,7 @@ namespace bkrukowski\Gordianus\Services;
  * @codeCoverageIgnore
  * @internal
  */
-class TlenPL extends MultiDomain
+class TlenPl extends MultiDomain
 {
     protected function getDomainList() : array
     {

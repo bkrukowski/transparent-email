@@ -2,9 +2,9 @@
 
 namespace bkrukowski\Gordianus\Tests\Services;
 
-use bkrukowski\Gordianus\Services\GmailCOM;
+use bkrukowski\Gordianus\Services\GmailCom;
 
-class GmailCOMTest extends \PHPUnit_Framework_TestCase
+class GmailComTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerGetPrimaryEmail
@@ -14,7 +14,7 @@ class GmailCOMTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
     {
-        $this->assertSame($outputEmail, (new GmailCOM())->getPrimaryEmail($inputEmail));
+        $this->assertSame($outputEmail, (new GmailCom())->getPrimaryEmail($inputEmail));
     }
 
     public function providerGetPrimaryEmail()
@@ -35,7 +35,7 @@ class GmailCOMTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsDomainSupported(string $domain, bool $result)
     {
-        $this->assertSame($result, (new GmailCOM())->isDomainSupported($domain));
+        $this->assertSame($result, (new GmailCom())->isDomainSupported($domain));
     }
 
     public function providerIsDomainSupported()

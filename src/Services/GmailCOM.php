@@ -5,7 +5,7 @@ namespace bkrukowski\Gordianus\Services;
 /**
  * @internal
  */
-class GmailCOM implements ServiceInterface
+class GmailCom implements ServiceInterface
 {
     public function getPrimaryEmail(string $email) : string
     {

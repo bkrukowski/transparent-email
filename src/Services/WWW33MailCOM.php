@@ -5,7 +5,7 @@ namespace bkrukowski\Gordianus\Services;
 /**
  * @internal
  */
-class WWW33MailCOM implements ServiceInterface
+class Www33MailCom implements ServiceInterface
 {
     public function getPrimaryEmail(string $email) : string
     {
