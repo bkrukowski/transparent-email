@@ -37,6 +37,4 @@ Yahoo uses the following pattern[*](https://help.yahoo.com/kb/SLN16026.html):
 * *baseName* - value defined by the user, different than email login;
 * *keyword* - one from a list of keywords defined by the user.
 
-Therefore we do not know what is the real email, so in this case result will be:
-
-*baseName*-alias@yahoo.com.
+Therefore we do not know what is the real email, so in this case result will be `baseName-alias@yahoo.com`.
