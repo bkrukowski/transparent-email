@@ -30,7 +30,13 @@ abstract class MultiDomain implements ServiceInterface
         return false;
     }
 
+    /**
+     * @return string Hostname in lowercase
+     */
     abstract protected function getPrimaryDomain() : string;
 
+    /**
+     * @return array List of hostnames in lowercase
+     */
     abstract protected function getDomainList() : array;
 }

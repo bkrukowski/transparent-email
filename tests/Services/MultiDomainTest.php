@@ -23,7 +23,8 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar']), 'gmail.com', false],
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'gmail.com']), 'gmail.com', true],
-            [$this->getMultiDomainMock('Foo.Bar', ['foo.bar', 'gmail.com']), 'gmail.com', true],
+            [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'gmail.com']), 'GMAIL.COM', true],
+            [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'gmail.com'], true), 'GMAIL.COM', true],
         ];
     }
 
