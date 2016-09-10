@@ -8,7 +8,7 @@ Gordianus clears aliases from email address. Email `John.Doe+alias@gmail.com` wi
 
 ## Why?
 
-To detect multi-accounts in your website.
+To detect multi-accounts on your website.
 
 ## Supported mailboxes
 
