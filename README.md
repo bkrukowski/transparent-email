@@ -6,6 +6,10 @@
 
 Gordianus clears aliases from email address. Email `John.Doe+alias@gmail.com` will be transformed to `johndoe@gmail.com`.
 
+## Why?
+
+To detect multi-accounts in your website.
+
 ## Supported mailboxes
 
 * [gmail.com](https://gmail.com)
@@ -20,3 +24,19 @@ Gordianus clears aliases from email address. Email `John.Doe+alias@gmail.com` wi
 $gordianus = new \bkrukowski\Gordianus\Gordianus();
 $transformedEmail = $gordianus->getPrimaryEmail('John.Doe+alias@gmail.com');
 ```
+
+## Yahoo.com
+
+Aliases work different on Yahoo than on Gmail. On Gmail part after plus is skipped.
+For example message sent to `jane.doe+alias@gmail.com` will be redirected to `jane.doe@gmail.com`.
+
+Yahoo uses the following pattern[*](https://help.yahoo.com/kb/SLN16026.html):
+
+*baseName*-*keyword*@yahoo.com
+
+* *baseName* - value defined by the user, different than email login;
+* *keyword* - one from a list of keywords defined by the user.
+
+Therefore we do not know what is the real email, so in this case result will be:
+
+*baseName*-alias@yahoo.com.
