@@ -44,7 +44,11 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
     public function providerGetPrimaryEmail()
     {
         return [
-            [new TransparentEmail([TransparentEmail::SERVICE_TLEN_PL]), 'john.doe+alias@gmail.com', 'john.doe+alias@gmail.com'],
+            [
+                new TransparentEmail([TransparentEmail::SERVICE_TLEN_PL]),
+                'john.doe+alias@gmail.com',
+                'john.doe+alias@gmail.com'
+            ],
             [new TransparentEmail(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
             [new TransparentEmail([]), 'John.Doe@example.com', 'john.doe@example.com'],
             [new TransparentEmail([], true), 'John.Doe@example.com', 'John.Doe@example.com'],
