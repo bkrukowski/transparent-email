@@ -4,7 +4,7 @@
 
 # Gordianus
 
-Gordianus clears aliases from email address. Email John.Doe+alias@gmail.com will be transformed to johndoe@gmail.com.
+Gordianus clears aliases from email address. Email `John.Doe+alias@gmail.com` will be transformed to `johndoe@gmail.com`.
 
 ## Supported mailboxes
 
