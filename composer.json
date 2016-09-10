@@ -1,5 +1,5 @@
 {
-    "name": "bkrukowski/gordianus",
+    "name": "bkrukowski/transparent-email",
     "description": "Remove aliases from email and get primary email account",
     "type": "library",
     "require": {
@@ -19,12 +19,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "bkrukowski\\Gordianus\\": "src/"
+            "bkrukowski\\TransparentEmail\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "bkrukowski\\Gordianus\\Tests\\": "tests/"
+            "bkrukowski\\TransparentEmail\\Tests\\": "tests/"
         }
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace bkrukowski\Gordianus\Tests\Services;
+namespace bkrukowski\TransparentEmail\Tests\Services;
 
-use bkrukowski\Gordianus\Services\YahooCom;
+use bkrukowski\TransparentEmail\Services\YahooCom;
 
 class YahooComTest extends \PHPUnit_Framework_TestCase
 {

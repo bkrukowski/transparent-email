@@ -1,8 +1,8 @@
 <?php
 
-namespace bkrukowski\Gordianus\Tests\Services;
+namespace bkrukowski\TransparentEmail\Tests\Services;
 
-use bkrukowski\Gordianus\Services\GmailCom;
+use bkrukowski\TransparentEmail\Services\GmailCom;
 
 class GmailComTest extends \PHPUnit_Framework_TestCase
 {

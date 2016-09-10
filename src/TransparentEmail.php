@@ -1,15 +1,15 @@
 <?php
 
-namespace bkrukowski\Gordianus;
+namespace bkrukowski\TransparentEmail;
 
-use bkrukowski\Gordianus\Services\GmailCom;
-use bkrukowski\Gordianus\Services\OutlookCom;
-use bkrukowski\Gordianus\Services\ServiceInterface;
-use bkrukowski\Gordianus\Services\TlenPl;
-use bkrukowski\Gordianus\Services\Www33MailCom;
-use bkrukowski\Gordianus\Services\YahooCom;
+use bkrukowski\TransparentEmail\Services\GmailCom;
+use bkrukowski\TransparentEmail\Services\OutlookCom;
+use bkrukowski\TransparentEmail\Services\ServiceInterface;
+use bkrukowski\TransparentEmail\Services\TlenPl;
+use bkrukowski\TransparentEmail\Services\Www33MailCom;
+use bkrukowski\TransparentEmail\Services\YahooCom;
 
-class Gordianus
+class TransparentEmail
 {
     const SERVICE_GMAIL_COM = GmailCom::class;
     const SERVICE_TLEN_PL = TlenPl::class;

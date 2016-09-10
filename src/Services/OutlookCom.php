@@ -1,6 +1,6 @@
 <?php
 
-namespace bkrukowski\Gordianus\Services;
+namespace bkrukowski\TransparentEmail\Services;
 
 /**
  * @internal

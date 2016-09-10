@@ -1,8 +1,8 @@
 <?php
 
-namespace bkrukowski\Gordianus\Tests\Services;
+namespace bkrukowski\TransparentEmail\Tests\Services;
 
-use bkrukowski\Gordianus\Services\OutlookCom;
+use bkrukowski\TransparentEmail\Services\OutlookCom;
 
 class OutlookComTest extends \PHPUnit_Framework_TestCase
 {

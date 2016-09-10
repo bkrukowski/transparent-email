@@ -1,8 +1,8 @@
 <?php
 
-namespace bkrukowski\Gordianus\Tests\Services;
+namespace bkrukowski\TransparentEmail\Tests\Services;
 
-use bkrukowski\Gordianus\Services\Www33MailCom;
+use bkrukowski\TransparentEmail\Services\Www33MailCom;
 
 class Www33MailComTest extends \PHPUnit_Framework_TestCase
 {

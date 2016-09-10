@@ -1,8 +1,8 @@
 <?php
 
-namespace bkrukowski\Gordianus\Tests\Services;
+namespace bkrukowski\TransparentEmail\Tests\Services;
 
-use bkrukowski\Gordianus\Services\MultiDomain;
+use bkrukowski\TransparentEmail\Services\MultiDomain;
 
 class MultiDomainTest extends \PHPUnit_Framework_TestCase
 {

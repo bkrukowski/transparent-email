@@ -1,6 +1,6 @@
 <?php
 
-namespace bkrukowski\Gordianus;
+namespace bkrukowski\TransparentEmail;
 
 class InvalidEmailException extends \Exception
 {

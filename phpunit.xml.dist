@@ -8,7 +8,7 @@
 >
 
     <testsuites>
-        <testsuite name="Gordianus Test Suite">
+        <testsuite name="TransparentEmail Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
