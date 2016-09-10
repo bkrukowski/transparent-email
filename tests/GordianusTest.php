@@ -49,6 +49,7 @@ class GordianusTest extends \PHPUnit_Framework_TestCase
             [new Gordianus([]), 'John.Doe@example.com', 'john.doe@example.com'],
             [new Gordianus([], true), 'John.Doe@example.com', 'John.Doe@example.com'],
             [new Gordianus(Gordianus::ALL_SERVICES, true), 'John.Doe@gmail.com', 'johndoe@gmail.com'],
+            [new Gordianus(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
         ];
     }
 }

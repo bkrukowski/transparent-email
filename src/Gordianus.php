@@ -3,6 +3,7 @@
 namespace bkrukowski\Gordianus;
 
 use bkrukowski\Gordianus\Services\GmailCom;
+use bkrukowski\Gordianus\Services\OutlookCom;
 use bkrukowski\Gordianus\Services\ServiceInterface;
 use bkrukowski\Gordianus\Services\TlenPl;
 use bkrukowski\Gordianus\Services\Www33MailCom;
@@ -12,6 +13,7 @@ class Gordianus
     const SERVICE_GMAIL_COM = GmailCom::class;
     const SERVICE_TLEN_PL = TlenPl::class;
     const SERVICE_WWW_33MAIL_COM = Www33MailCom::class;
+    const SERVICE_OUTLOOK_COM = OutlookCom::class;
 
     /**
      * Constant ALL_SERVICES can contain different values depends on API version
@@ -20,6 +22,7 @@ class Gordianus
         self::SERVICE_GMAIL_COM,
         self::SERVICE_TLEN_PL,
         self::SERVICE_WWW_33MAIL_COM,
+        self::SERVICE_OUTLOOK_COM,
     ];
 
     private $services;
