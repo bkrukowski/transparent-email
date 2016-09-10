@@ -12,6 +12,7 @@ Gordianus clears aliases from email address. Email `John.Doe+alias@gmail.com` wi
 * [tlen.pl](http://tlen.pl)
 * [33mail.com](https://www.33mail.com)
 * [outlook.com](http://outlook.com)
+* [yahoo.com](http://mail.yahoo.com)
 
 ## Usage
 

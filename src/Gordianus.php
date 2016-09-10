@@ -7,6 +7,7 @@ use bkrukowski\Gordianus\Services\OutlookCom;
 use bkrukowski\Gordianus\Services\ServiceInterface;
 use bkrukowski\Gordianus\Services\TlenPl;
 use bkrukowski\Gordianus\Services\Www33MailCom;
+use bkrukowski\Gordianus\Services\YahooCom;
 
 class Gordianus
 {
@@ -14,6 +15,7 @@ class Gordianus
     const SERVICE_TLEN_PL = TlenPl::class;
     const SERVICE_WWW_33MAIL_COM = Www33MailCom::class;
     const SERVICE_OUTLOOK_COM = OutlookCom::class;
+    const SERVICE_YAHOO_COM = YahooCom::class;
 
     /**
      * Constant ALL_SERVICES can contain different values depends on API version
@@ -23,6 +25,7 @@ class Gordianus
         self::SERVICE_TLEN_PL,
         self::SERVICE_WWW_33MAIL_COM,
         self::SERVICE_OUTLOOK_COM,
+        self::SERVICE_YAHOO_COM,
     ];
 
     private $services;
