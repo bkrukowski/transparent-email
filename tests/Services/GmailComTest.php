@@ -24,6 +24,7 @@ class GmailComTest extends \PHPUnit_Framework_TestCase
             ['Foo.Bar@GMAIL.COM', 'foobar@gmail.com'],
             ['foobar+alias@gmail.com', 'foobar@gmail.com'],
             ['fo.ob.ar+alias@gmail.com', 'foobar@gmail.com'],
+            ['JaneDoe@googlemail.com', 'janedoe@googlemail.com'],
         ];
     }
 

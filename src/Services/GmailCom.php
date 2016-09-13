@@ -16,6 +16,6 @@ class GmailCom implements ServiceInterface
 
     public function isDomainSupported(string $domain) : bool
     {
-        return strtolower($domain) === 'gmail.com';
+        return in_array(strtolower($domain), ['gmail.com', 'googlemail.com']);
     }
 }
