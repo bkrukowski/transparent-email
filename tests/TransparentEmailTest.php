@@ -32,13 +32,13 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider providerGetPrimaryEmail
      *
-     * @param TransparentEmail $TransparentEmail
+     * @param TransparentEmail $transparentEmail
      * @param string $email
      * @param string $expectedEmail
      */
-    public function testGetPrimaryEmail(TransparentEmail $TransparentEmail, string $email, string $expectedEmail)
+    public function testGetPrimaryEmail(TransparentEmail $transparentEmail, string $email, string $expectedEmail)
     {
-        $this->assertSame($expectedEmail, $TransparentEmail->getPrimaryEmail($email));
+        $this->assertSame($expectedEmail, $transparentEmail->getPrimaryEmail($email));
     }
 
     public function providerGetPrimaryEmail()
