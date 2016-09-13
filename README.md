@@ -28,7 +28,7 @@ $transformedEmail = $cleaner->getPrimaryEmail('John.Doe+alias@gmail.com');
 ## Yahoo.com
 
 Aliases work different on Yahoo than on Gmail. On Gmail part after plus is skipped.
-For example message sent to `jane.doe+alias@gmail.com` will be redirected to `jane.doe@gmail.com`.
+For example message sent to `janedoe+alias@gmail.com` will be redirected to `janedoe@gmail.com`.
 
 Yahoo uses the following pattern[*](https://help.yahoo.com/kb/SLN16026.html):
 
