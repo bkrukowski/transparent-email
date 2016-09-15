@@ -2,6 +2,7 @@
 
 namespace bkrukowski\TransparentEmail;
 
+use bkrukowski\TransparentEmail\Services\AppsGoogleCom;
 use bkrukowski\TransparentEmail\Services\GmailCom;
 use bkrukowski\TransparentEmail\Services\OutlookCom;
 use bkrukowski\TransparentEmail\Services\ServiceInterface;
@@ -16,6 +17,7 @@ class TransparentEmail
     const SERVICE_WWW_33MAIL_COM = Www33MailCom::class;
     const SERVICE_OUTLOOK_COM = OutlookCom::class;
     const SERVICE_YAHOO_COM = YahooCom::class;
+    const SERVICE_APPS_GOOGLE_COM = AppsGoogleCom::class;
 
     /**
      * Constant ALL_SERVICES can contain different values depends on API version
@@ -26,6 +28,7 @@ class TransparentEmail
         self::SERVICE_WWW_33MAIL_COM,
         self::SERVICE_OUTLOOK_COM,
         self::SERVICE_YAHOO_COM,
+        self::SERVICE_APPS_GOOGLE_COM,
     ];
 
     private $services;
