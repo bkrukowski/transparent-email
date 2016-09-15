@@ -12,7 +12,7 @@ To detect multi-accounts on your website.
 
 ## Supported mailboxes
 
-* [gmail.com](https://gmail.com)
+* [gmail.com](https://gmail.com) and [Google Apps](https://apps.google.com) with custom domain
 * [tlen.pl](http://tlen.pl)
 * [33mail.com](https://www.33mail.com)
 * [outlook.com](http://outlook.com)
