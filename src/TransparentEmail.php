@@ -60,6 +60,7 @@ class TransparentEmail
             $service = new $serviceClass();
             if ($service->isDomainSupported($domain)) {
                 $result = $service->getPrimaryEmail($result);
+                break;
             }
         }
 
