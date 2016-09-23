@@ -16,12 +16,12 @@ class TransparentEmail
     /**
      * @var bool
      */
-    private $caseSensitiveLocalPart;
+    private $caseSensitive;
 
-    public function __construct(ServiceCollectorInterface $services = null, bool $caseSensitiveLocalPart = false)
+    public function __construct(ServiceCollectorInterface $services = null, bool $caseSensitive = false)
     {
         $this->services = $services ?: new DefaultServiceCollector();
-        $this->caseSensitiveLocalPart = $caseSensitiveLocalPart;
+        $this->caseSensitive = $caseSensitive;
     }
 
     /**
@@ -32,7 +32,7 @@ class TransparentEmail
     public function getPrimaryEmail(string $email)
     {
         $this->validateEmailAddress($email);
-        if (!$this->caseSensitiveLocalPart) {
+        if (!$this->caseSensitive) {
             $email = strtolower($email);
         }
         $domain = strtolower(explode('@', $email)[1]);
