@@ -14,7 +14,7 @@ abstract class MultiDomain implements ServiceInterface
         if (!$this->isCaseSensitive()) {
             $email = strtolower($email);
         }
-        
+
         return explode('@', $email)[0] . '@' . $this->getPrimaryDomain();
     }
 
