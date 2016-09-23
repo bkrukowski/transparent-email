@@ -2,6 +2,9 @@
 
 namespace bkrukowski\TransparentEmail\Tests;
 
+use bkrukowski\TransparentEmail\ServiceCollector;
+use bkrukowski\TransparentEmail\ServiceCollectorInterface;
+use bkrukowski\TransparentEmail\Services\TlenPl;
 use bkrukowski\TransparentEmail\TransparentEmail;
 use bkrukowski\TransparentEmail\InvalidEmailException;
 
@@ -43,18 +46,31 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
 
     public function providerGetPrimaryEmail()
     {
+        $emptyServiceCollector = $this->createServiceCollector();
+        $tlenServiceCollector = $this->createServiceCollector([TlenPl::class]);
+
         return [
             [
-                new TransparentEmail([TransparentEmail::SERVICE_TLEN_PL]),
+                new TransparentEmail($tlenServiceCollector),
                 'john.doe+alias@gmail.com',
                 'john.doe+alias@gmail.com'
             ],
             [new TransparentEmail(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
-            [new TransparentEmail([]), 'John.Doe@example.com', 'john.doe@example.com'],
-            [new TransparentEmail([], true), 'John.Doe@example.com', 'John.Doe@example.com'],
-            [new TransparentEmail(TransparentEmail::ALL_SERVICES, true), 'John.Doe@gmail.com', 'johndoe@gmail.com'],
+            [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'john.doe@example.com'],
+            [new TransparentEmail($emptyServiceCollector, true), 'John.Doe@example.com', 'John.Doe@example.com'],
+            [new TransparentEmail(null, true), 'John.Doe@gmail.com', 'johndoe@gmail.com'],
             [new TransparentEmail(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
             [new TransparentEmail(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
         ];
+    }
+
+    private function createServiceCollector(array $classes = []) : ServiceCollectorInterface
+    {
+        $collector = new ServiceCollector();
+        foreach ($classes as $class) {
+            $collector->addService(new $class());
+        }
+
+        return $collector;
     }
 }

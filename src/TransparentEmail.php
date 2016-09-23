@@ -2,42 +2,23 @@
 
 namespace bkrukowski\TransparentEmail;
 
-use bkrukowski\TransparentEmail\Services\AppsGoogleCom;
-use bkrukowski\TransparentEmail\Services\GmailCom;
-use bkrukowski\TransparentEmail\Services\OutlookCom;
 use bkrukowski\TransparentEmail\Services\ServiceInterface;
-use bkrukowski\TransparentEmail\Services\TlenPl;
-use bkrukowski\TransparentEmail\Services\Www33MailCom;
-use bkrukowski\TransparentEmail\Services\YahooCom;
 
 class TransparentEmail
 {
-    const SERVICE_GMAIL_COM = GmailCom::class;
-    const SERVICE_TLEN_PL = TlenPl::class;
-    const SERVICE_WWW_33MAIL_COM = Www33MailCom::class;
-    const SERVICE_OUTLOOK_COM = OutlookCom::class;
-    const SERVICE_YAHOO_COM = YahooCom::class;
-    const SERVICE_APPS_GOOGLE_COM = AppsGoogleCom::class;
-
     /**
-     * Constant ALL_SERVICES can contain different values depends on API version
+     * @var ServiceCollectorInterface|ServiceInterface[]
      */
-    const ALL_SERVICES = [
-        self::SERVICE_GMAIL_COM,
-        self::SERVICE_TLEN_PL,
-        self::SERVICE_WWW_33MAIL_COM,
-        self::SERVICE_OUTLOOK_COM,
-        self::SERVICE_YAHOO_COM,
-        self::SERVICE_APPS_GOOGLE_COM,
-    ];
-
     private $services;
 
+    /**
+     * @var bool
+     */
     private $caseSensitiveLocalPart;
 
-    public function __construct(array $services = self::ALL_SERVICES, bool $caseSensitiveLocalPart = false)
+    public function __construct(ServiceCollectorInterface $services = null, bool $caseSensitiveLocalPart = false)
     {
-        $this->services = $services;
+        $this->services = $services ?: new DefaultServiceCollector();
         $this->caseSensitiveLocalPart = $caseSensitiveLocalPart;
     }
 
@@ -55,12 +36,9 @@ class TransparentEmail
         $domain = strtolower(explode('@', $email)[1]);
         $result = $email;
 
-        foreach ($this->services as $serviceClass) {
-            /** @var ServiceInterface $service */
-            $service = new $serviceClass();
+        foreach ($this->services as $service) {
             if ($service->isDomainSupported($domain)) {
                 $result = $service->getPrimaryEmail($result);
-                break;
             }
         }
 
