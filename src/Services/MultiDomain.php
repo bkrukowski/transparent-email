@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EditableEmail;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
 
 abstract class MultiDomain implements ServiceInterface
 {
     public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
-        return (new MutableEmail($email))
+        return (new EditableEmail($email))
             ->setDomain($this->getPrimaryDomain())
             ->lowerCaseLocalPartIf(!$this->isCaseSensitive());
     }

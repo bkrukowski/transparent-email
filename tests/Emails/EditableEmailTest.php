@@ -2,11 +2,11 @@
 
 namespace bkrukowski\TransparentEmail\Tests\Emails;
 
-use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EditableEmail;
 use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
 
-class MutableEmailTest extends \PHPUnit_Framework_TestCase
+class EditableEmailTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider providerRemoveFromLocalPart
@@ -16,10 +16,11 @@ class MutableEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testRemoveFromLocalPart(EmailInterface $email, string $toRemove)
     {
-        $editable = new MutableEmail($email);
-        $this->assertSame($editable, $editable->removeFromLocalPart($toRemove));
-        $this->assertNotContains((string) $editable, $toRemove);
-        $this->assertSame($email->getDomain(), $editable->getDomain());
+        $editable = new EditableEmail($email);
+        $new = $editable->removeFromLocalPart($toRemove);
+        $this->assertNotSame($editable, $new);
+        $this->assertNotContains((string) $new, $toRemove);
+        $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
     public function providerRemoveFromLocalPart()
@@ -39,9 +40,10 @@ class MutableEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testRemoveSuffixAlias(EmailInterface $email, string $delimiter, string $expected)
     {
-        $editable = new MutableEmail($email);
-        $this->assertSame($editable, $editable->removeSuffixAlias($delimiter));
-        $this->assertEquals($expected, $editable);
+        $editable = new EditableEmail($email);
+        $new = $editable->removeSuffixAlias($delimiter);
+        $this->assertNotSame($editable, $new);
+        $this->assertEquals($expected, $new);
         $this->assertSame($email->getDomain(), $editable->getDomain());
     }
 
@@ -62,10 +64,11 @@ class MutableEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDomain(EmailInterface $email, string $domain)
     {
-        $editable = new MutableEmail($email);
-        $this->assertSame($editable, $editable->setDomain($domain));
-        $this->assertSame($domain, $editable->getDomain());
-        $this->assertSame($email->getLocalPart(), $editable->getLocalPart());
+        $editable = new EditableEmail($email);
+        $new = $editable->setDomain($domain);
+        $this->assertNotSame($editable, $new);
+        $this->assertSame($domain, $new->getDomain());
+        $this->assertSame($email->getLocalPart(), $new->getLocalPart());
     }
 
     public function providerSetDomain()
@@ -85,10 +88,11 @@ class MutableEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testLocalPart(EmailInterface $email, string $localPart)
     {
-        $editable = new MutableEmail($email);
-        $this->assertSame($editable, $editable->setLocalPart($localPart));
-        $this->assertSame($localPart, $editable->getLocalPart());
-        $this->assertSame($email->getDomain(), $editable->getDomain());
+        $editable = new EditableEmail($email);
+        $new = $editable->setLocalPart($localPart);
+        $this->assertNotSame($editable, $new);
+        $this->assertSame($localPart, $new->getLocalPart());
+        $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
     public function providerSetLocalPart()
@@ -105,14 +109,15 @@ class MutableEmailTest extends \PHPUnit_Framework_TestCase
      *
      * @param EmailInterface $email
      * @param bool $condition
-     * @param bool $expected
+     * @param bool $isLowerCase
      */
-    public function testLowerCaseLocalPartIf(EmailInterface $email, bool $condition, bool $expected)
+    public function testLowerCaseLocalPartIf(EmailInterface $email, bool $condition, bool $isLowerCase)
     {
-        $editable = new MutableEmail($email);
-        $this->assertSame($editable, $editable->lowerCaseLocalPartIf($condition));
-        $this->assertSame($expected, strtolower($editable->getLocalPart()) === $editable->getLocalPart());
-        $this->assertSame($email->getDomain(), $editable->getDomain());
+        $editable = new EditableEmail($email);
+        $new = $editable->lowerCaseLocalPartIf($condition);
+        $this->assertSame(!$condition, $editable === $new);
+        $this->assertSame($isLowerCase, strtolower($editable->getLocalPart()) === $new->getLocalPart());
+        $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
     public function providerLowerCaseLocalPartIf()
