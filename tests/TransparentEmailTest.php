@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace bkrukowski\TransparentEmail\Tests;
 
 use bkrukowski\TransparentEmail\Emails\Email;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
 use bkrukowski\TransparentEmail\ServiceCollector;
 use bkrukowski\TransparentEmail\ServiceCollectorInterface;
 use bkrukowski\TransparentEmail\Services\TlenPl;
@@ -46,6 +47,28 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
             [new TransparentEmail(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
             [new TransparentEmail(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
             [new TransparentEmail(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
+        ];
+    }
+
+    /**
+     * @dataProvider providerDefault
+     *
+     * @param EmailInterface $inputEmail
+     * @param string $expectedEmail
+     */
+    public function testDefault(EmailInterface $inputEmail, string $expectedEmail)
+    {
+        $this->assertEquals($expectedEmail, (new TransparentEmail())->getPrimaryEmail($inputEmail));
+    }
+
+    public function providerDefault()
+    {
+        return [
+            [new Email('John.Doe+spam@gmail.com', true), 'johndoe@gmail.com'],
+            [new Email('Jane.Doe+spam@outlook.com', true), 'jane.doe@outlook.com'],
+            [new Email('John.Doe@tlen.pl', true), 'john.doe@o2.pl'],
+            [new Email('ALIAS@janedoe.33mail.com', true), 'janedoe@janedoe.33mail.com'],
+            [new Email('John.Doe-facebook@yahoo.com', true), 'john.doe@yahoo.com'],
         ];
     }
 
