@@ -4,46 +4,29 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Tests;
 
+use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\ServiceCollector;
 use bkrukowski\TransparentEmail\ServiceCollectorInterface;
 use bkrukowski\TransparentEmail\Services\TlenPl;
 use bkrukowski\TransparentEmail\TransparentEmail;
-use bkrukowski\TransparentEmail\InvalidEmailException;
 
 class TransparentEmailTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @dataProvider providerValidator
-     *
-     * @param string $email
-     * @param bool $validEmail
-     */
-    public function testValidator(string $email, bool $validEmail)
-    {
-        if (!$validEmail) {
-            $this->expectException(InvalidEmailException::class);
-        }
-        (new TransparentEmail())->getPrimaryEmail($email);
-    }
-
-    public function providerValidator()
-    {
-        return [
-            ['john.doe@gmail.comm', true],
-            ['john doe@gmail.com', false],
-        ];
-    }
-
     /**
      * @dataProvider providerGetPrimaryEmail
      *
      * @param TransparentEmail $transparentEmail
      * @param string $email
      * @param string $expectedEmail
+     * @param bool $caseSensitive
      */
-    public function testGetPrimaryEmail(TransparentEmail $transparentEmail, string $email, string $expectedEmail)
-    {
-        $this->assertSame($expectedEmail, $transparentEmail->getPrimaryEmail($email));
+    public function testGetPrimaryEmail(
+        TransparentEmail $transparentEmail,
+        string $email,
+        string $expectedEmail,
+        bool $caseSensitive = false
+    ) {
+        $this->assertEquals($expectedEmail, $transparentEmail->getPrimaryEmail(new Email($email, $caseSensitive)));
     }
 
     public function providerGetPrimaryEmail()
@@ -59,8 +42,8 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
             ],
             [new TransparentEmail(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'john.doe@example.com'],
-            [new TransparentEmail($emptyServiceCollector, true), 'John.Doe@example.com', 'John.Doe@example.com'],
-            [new TransparentEmail(null, true), 'John.Doe@gmail.com', 'johndoe@gmail.com'],
+            [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'John.Doe@example.com', true],
+            [new TransparentEmail(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
             [new TransparentEmail(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
             [new TransparentEmail(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
         ];

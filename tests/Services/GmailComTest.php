@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
+use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Services\GmailCom;
 
 class GmailComTest extends \PHPUnit_Framework_TestCase
@@ -16,7 +17,7 @@ class GmailComTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
     {
-        $this->assertSame($outputEmail, (new GmailCom())->getPrimaryEmail($inputEmail));
+        $this->assertEquals($outputEmail, (new GmailCom())->getPrimaryEmail(new Email($inputEmail)));
     }
 
     public function providerGetPrimaryEmail()
@@ -31,24 +32,26 @@ class GmailComTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider providerIsDomainSupported
+     * @dataProvider providerIsSupported
      *
      * @param string $domain
      * @param bool $result
      */
-    public function testIsDomainSupported(string $domain, bool $result)
+    public function testIsSupported(string $domain, bool $result)
     {
-        $this->assertSame($result, (new GmailCom())->isDomainSupported($domain));
+        $this->assertSame($result, (new GmailCom())->isSupported(new Email('Jane.Doe@' . $domain)));
     }
 
-    public function providerIsDomainSupported()
+    public function providerIsSupported()
     {
         return [
             ['gmail.com', true],
             ['gmail.COM', true],
             ['google.com', false],
-            ['gmailcom', false],
-            ['g.mail.com', false]
+            ['test.gmailcom', false],
+            ['g.mail.com', false],
+            ['googlemail.com', true],
+            ['GoogleMail.Com', true],
         ];
     }
 }

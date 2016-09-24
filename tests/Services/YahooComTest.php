@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
+use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Services\YahooCom;
 
 class YahooComTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider providerIsDomainSupported
+     * @dataProvider providerIsSupported
      *
      * @param string $domain
      * @param bool $result
      */
     public function testIsDomainSupported(string $domain, bool $result)
     {
-        $this->assertSame($result, (new YahooCom())->isDomainSupported($domain));
+        $this->assertSame($result, (new YahooCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsDomainSupported()
+    public function providerIsSupported()
     {
         return [
             ['yahoo.com', true],
@@ -40,7 +41,7 @@ class YahooComTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $expectedEmail)
     {
-        $this->assertSame($expectedEmail, (new YahooCom())->getPrimaryEmail($inputEmail));
+        $this->assertEquals($expectedEmail, (new YahooCom())->getPrimaryEmail(new Email($inputEmail, true)));
     }
 
     public function providerGetPrimaryEmail()

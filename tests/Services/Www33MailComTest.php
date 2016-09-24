@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
+use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Services\Www33MailCom;
 
 class Www33MailComTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider providerIsDomainSupported
+     * @dataProvider providerIsSupported
      *
      * @param string $domain
      * @param bool $isSupported
      */
-    public function testIsDomainSupported(string $domain, bool $isSupported)
+    public function testIsSupported(string $domain, bool $isSupported)
     {
-        $this->assertSame($isSupported, (new Www33MailCom())->isDomainSupported($domain));
+        $this->assertSame($isSupported, (new Www33MailCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsDomainSupported()
+    public function providerIsSupported()
     {
         return [
             ['foo.33mail.com', true],
@@ -38,7 +39,7 @@ class Www33MailComTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $expectedEmail)
     {
-        $this->assertSame($expectedEmail, (new Www33MailCom())->getPrimaryEmail($inputEmail));
+        $this->assertEquals($expectedEmail, (new Www33MailCom())->getPrimaryEmail(new Email($inputEmail, true)));
     }
 
     public function providerGetPrimaryEmail()

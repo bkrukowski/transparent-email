@@ -2,12 +2,11 @@
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 interface ServiceInterface
 {
-    public function isDomainSupported(string $domain) : bool;
+    public function isSupported(EmailInterface $email) : bool;
 
-    public function getPrimaryEmail(string $email) : string;
+    public function getPrimaryEmail(EmailInterface $email) : EmailInterface;
 }

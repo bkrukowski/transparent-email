@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 class Www33MailCom implements ServiceInterface
 {
-    public function getPrimaryEmail(string $email) : string
+    public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
-        list(, $domain) = explode('@', strtolower($email));
-
-        return preg_replace('/\\.33mail\\.com$/', '', $domain) . '@' . $domain;
+        return (new MutableEmail($email))
+            ->setLocalPart(preg_replace('/\\.33mail\\.com$/', '', $email->getDomain()));
     }
 
-    public function isDomainSupported(string $domain) : bool
+    public function isSupported(EmailInterface $email) : bool
     {
-        return (bool) preg_match('/\\.33mail\\.com$/', strtolower($domain));
+        return (bool) preg_match('/\\.33mail\\.com$/', $email->getDomain());
     }
 }

@@ -4,23 +4,24 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
+use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Services\MultiDomain;
 
 class MultiDomainTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @dataProvider providerIsDomainSupported
+     * @dataProvider providerIsSupported
      *
      * @param MultiDomain $mock
      * @param string $domain
      * @param bool $expected
      */
-    public function testIsDomainSupported(MultiDomain $mock, string $domain, bool $expected)
+    public function testIsSupported(MultiDomain $mock, string $domain, bool $expected)
     {
-        $this->assertSame($expected, $mock->isDomainSupported($domain));
+        $this->assertSame($expected, $mock->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsDomainSupported()
+    public function providerIsSupported()
     {
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar']), 'gmail.com', false],
@@ -37,9 +38,8 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
      * @param string $email
      * @param string $expectedEmail
      */
-    public function testGetPrimaryDomain(MultiDomain $mock, string $email, string $expectedEmail)
-    {
-        $this->assertSame($expectedEmail, $mock->getPrimaryEmail($email));
+    public function testGetPrimaryDomain(MultiDomain $mock, string $email, string $expectedEmail) {
+        $this->assertEquals($expectedEmail, $mock->getPrimaryEmail(new Email($email, true)));
     }
 
     public function providerGetPrimaryDomain()
@@ -47,6 +47,7 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2']), 'name@foo.bar', 'name@foo.bar'],
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2'], true), 'Name@foo.bar', 'Name@foo.bar'],
+            [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2'], true), 'Name@FOO.bar', 'Name@foo.bar'],
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2']), 'name@foo.bar2', 'name@foo.bar'],
         ];
     }

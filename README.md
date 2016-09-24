@@ -21,8 +21,11 @@ To detect multi-accounts on your website.
 ## Usage
 
 ```php
-$cleaner = new \bkrukowski\TransparentEmail\TransparentEmail();
-$transformedEmail = $cleaner->getPrimaryEmail('John.Doe+alias@gmail.com');
+use \bkrukowski\TransparentEmail\TransparentEmail;
+use \bkrukowski\TransparentEmail\Emails\Email;
+
+$cleaner = new TransparentEmail();
+$transformedEmail = $cleaner->getPrimaryEmail(new Email('John.Doe+alias@gmail.com'));
 ```
 
 ## Yahoo.com

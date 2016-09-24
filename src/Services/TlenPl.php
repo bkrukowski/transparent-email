@@ -6,7 +6,6 @@ namespace bkrukowski\TransparentEmail\Services;
 
 /**
  * @codeCoverageIgnore
- * @internal
  */
 class TlenPl extends MultiDomain
 {

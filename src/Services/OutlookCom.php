@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 class OutlookCom implements ServiceInterface
 {
-    public function getPrimaryEmail(string $email) : string
+    public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
-        list($name, $domain) = explode('@', strtolower($email));
-
-        return explode('+', $name)[0] . '@' . $domain;
+        return (new MutableEmail($email))
+            ->removeSuffixAlias('+')
+            ->lowerCaseLocalPartIf(true);
     }
 
-    public function isDomainSupported(string $domain) : bool
+    public function isSupported(EmailInterface $email) : bool
     {
-        return in_array(strtolower($domain), ['outlook.com', 'hotmail.com']);
+        return in_array($email->getDomain(), ['outlook.com', 'hotmail.com'], true);
     }
 }

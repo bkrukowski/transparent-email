@@ -4,28 +4,34 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 class GmailCom implements ServiceInterface
 {
-    public function getPrimaryEmail(string $email) : string
+    public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
-        list($name, $domain) = explode('@', strtolower($email));
-
-        return explode('+', str_replace('.', '', $name))[0] . '@' . $this->mapDomain($domain);
+        return (new MutableEmail($email))
+            ->removeFromLocalPart('.')
+            ->removeSuffixAlias('+')
+            ->lowerCaseLocalPartIf(true)
+            ->setDomain($this->mapDomain($email->getDomain()));
     }
 
-    public function isDomainSupported(string $domain) : bool
+    public function isSupported(EmailInterface $email) : bool
     {
-        return in_array(strtolower($domain), ['gmail.com', 'googlemail.com']);
+        return in_array($email->getDomain(), ['gmail.com', 'googlemail.com']);
+    }
+
+    protected function getDomainMapping() : array
+    {
+        return [
+            'googlemail.com' => 'gmail.com',
+        ];
     }
 
     private function mapDomain(string $domain) : string
     {
-        $mapping = [
-            'googlemail.com' => 'gmail.com',
-        ];
-        return $mapping[$domain] ?? $domain;
+        return $this->getDomainMapping()[$domain] ?? $domain;
     }
 }

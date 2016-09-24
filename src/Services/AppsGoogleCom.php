@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 class AppsGoogleCom extends GmailCom
 {
-    public function isDomainSupported(string $domain) : bool
+    public function isSupported(EmailInterface $email) : bool
     {
-        getmxrr($domain, $mxhosts);
+        getmxrr($email->getDomain(), $mxhosts);
         $regex1 = '#\\.googlemail\\.com$#';
         $regex2 = '#\\.google\\.com$#';
         foreach ($mxhosts as $host) {

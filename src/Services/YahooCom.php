@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace bkrukowski\TransparentEmail\Services;
 
-/**
- * @internal
- */
+use bkrukowski\TransparentEmail\Emails\MutableEmail;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
+
 class YahooCom implements ServiceInterface
 {
-    public function getPrimaryEmail(string $email) : string
+    public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
-        list($name, $domain) = explode('@', strtolower($email));
-
-        return explode('-', $name, 2)[0] . '@' . $domain;
+        return (new MutableEmail($email))
+            ->removeSuffixAlias('-')
+            ->lowerCaseLocalPartIf(true);
     }
 
-    public function isDomainSupported(string $domain) : bool
+    public function isSupported(EmailInterface $email) : bool
     {
-        return strtolower($domain) === 'yahoo.com';
+        return $email->getDomain() === 'yahoo.com';
     }
 }
