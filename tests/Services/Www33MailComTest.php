@@ -20,7 +20,7 @@ class Www33MailComTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($isSupported, (new Www33MailCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             ['foo.33mail.com', true],
@@ -42,7 +42,7 @@ class Www33MailComTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, (new Www33MailCom())->getPrimaryEmail(new Email($inputEmail, true)));
     }
 
-    public function providerGetPrimaryEmail()
+    public function providerGetPrimaryEmail() : array
     {
         return [
             ['qwerty@name.33mail.com', 'name@name.33mail.com'],

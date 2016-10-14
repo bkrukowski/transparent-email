@@ -20,7 +20,7 @@ class AppsGoogleComTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, (new AppsGoogleCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             ['example.com', false],

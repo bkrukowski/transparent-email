@@ -31,7 +31,7 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, $transparentEmail->getPrimaryEmail(new Email($email, $caseSensitive)));
     }
 
-    public function providerGetPrimaryEmail()
+    public function providerGetPrimaryEmail() : array
     {
         $emptyServiceCollector = $this->createServiceCollector();
         $tlenServiceCollector = $this->createServiceCollector([TlenPl::class]);
@@ -62,7 +62,7 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, (TransparentEmailFactory::createDefault())->getPrimaryEmail($inputEmail));
     }
 
-    public function providerDefault()
+    public function providerDefault() : array
     {
         return [
             [new Email('John.Doe+spam@gmail.com', true), 'johndoe@gmail.com'],

@@ -23,7 +23,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
-    public function providerRemoveFromLocalPart()
+    public function providerRemoveFromLocalPart() : array
     {
         return [
             [new Email('jane.doe.1990@gmail.com'), '.'],
@@ -47,7 +47,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($email->getDomain(), $editable->getDomain());
     }
 
-    public function providerRemoveSuffixAlias()
+    public function providerRemoveSuffixAlias() : array
     {
         return [
             [new Email('John.Doe+alias@gmail.com', true), '+', 'John.Doe@gmail.com'],
@@ -71,7 +71,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($email->getLocalPart(), $new->getLocalPart());
     }
 
-    public function providerSetDomain()
+    public function providerSetDomain() : array
     {
         return [
             [new Email('jane.doe@foo.bar'), 'gmail.com'],
@@ -95,7 +95,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
-    public function providerSetLocalPart()
+    public function providerSetLocalPart() : array
     {
         return [
             [new Email('jane.doe@foo.bar'), 'jane'],
@@ -120,7 +120,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
-    public function providerLowerCaseLocalPartIf()
+    public function providerLowerCaseLocalPartIf() : array
     {
         return [
             [new Email('john.doe@example.com', true), false, true],

@@ -20,7 +20,7 @@ class GmailComTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($outputEmail, (new GmailCom())->getPrimaryEmail(new Email($inputEmail)));
     }
 
-    public function providerGetPrimaryEmail()
+    public function providerGetPrimaryEmail() : array
     {
         return [
             ['foo.bar@gmail.com', 'foobar@gmail.com'],
@@ -42,7 +42,7 @@ class GmailComTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, (new GmailCom())->isSupported(new Email('Jane.Doe@' . $domain)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             ['gmail.com', true],

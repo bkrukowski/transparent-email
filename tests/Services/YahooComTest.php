@@ -20,7 +20,7 @@ class YahooComTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, (new YahooCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             ['yahoo.com', true],
@@ -44,7 +44,7 @@ class YahooComTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, (new YahooCom())->getPrimaryEmail(new Email($inputEmail, true)));
     }
 
-    public function providerGetPrimaryEmail()
+    public function providerGetPrimaryEmail() : array
     {
         return [
             ['janedoe@yahoo.com', 'janedoe@yahoo.com'],

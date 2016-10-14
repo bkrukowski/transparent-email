@@ -21,7 +21,7 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $mock->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar']), 'gmail.com', false],
@@ -42,7 +42,7 @@ class MultiDomainTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, $mock->getPrimaryEmail(new Email($email, true)));
     }
 
-    public function providerGetPrimaryDomain()
+    public function providerGetPrimaryDomain() : array
     {
         return [
             [$this->getMultiDomainMock('foo.bar', ['foo.bar', 'foo.bar2']), 'name@foo.bar', 'name@foo.bar'],

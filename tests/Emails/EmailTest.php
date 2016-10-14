@@ -33,7 +33,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($domain, $object->getDomain());
     }
 
-    public function providerConstructor()
+    public function providerConstructor() : array
     {
         return [
             ['john doe@example.com', true],

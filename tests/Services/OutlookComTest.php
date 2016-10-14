@@ -20,7 +20,7 @@ class OutlookComTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, (new OutlookCom())->isSupported(new Email('Jane.Doe@' . $domain, true)));
     }
 
-    public function providerIsSupported()
+    public function providerIsSupported() : array
     {
         return [
             ['outlook.com', true],
@@ -43,7 +43,7 @@ class OutlookComTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedEmail, (new OutlookCom())->getPrimaryEmail(new Email($inputEmail, true)));
     }
 
-    public function providerGetPrimaryEmail()
+    public function providerGetPrimaryEmail() : array
     {
         return [
             ['janedoe@outlook.com', 'janedoe@outlook.com'],
