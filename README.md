@@ -23,13 +23,17 @@ To detect multi-accounts on your website.
 ```php
 use bkrukowski\TransparentEmail\TransparentEmailFactory;
 use bkrukowski\TransparentEmail\Emails\Email;
+use bkrukowski\TransparentEmail\Emails\EmailInterface;
 use bkrukowski\TransparentEmail\Emails\InvalidEmailException;
 
 try {
     $cleaner = TransparentEmailFactory::createDefault();
-    $transformedEmail = $cleaner->getPrimaryEmail(new Email('John.Doe+alias@gmail.com'));
+    $inputEmail = new Email('John.Doe+alias@gmail.com');
+    /** @var EmailInterface $transformedEmail */
+    $transformedEmail = $cleaner->getPrimaryEmail($inputEmail);
+    echo $transformedEmail;
 } catch (InvalidEmailException $exception) {
-    // do something
+    echo 'Invalid email!';
 }
 ```
 
