@@ -33,6 +33,10 @@ try {
 }
 ```
 
+## Versioning
+
+The version numbers follow the [Semantic Versioning 2.0.0](http://semver.org/) scheme.
+
 ## Yahoo.com
 
 Aliases work different on Yahoo than on Gmail. On Gmail part after plus is skipped.
