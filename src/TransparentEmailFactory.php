@@ -11,16 +11,25 @@ use bkrukowski\TransparentEmail\Services\TlenPl;
 use bkrukowski\TransparentEmail\Services\Www33MailCom;
 use bkrukowski\TransparentEmail\Services\YahooCom;
 
-class DefaultServiceCollector extends ServiceCollector
+class TransparentEmailFactory
 {
-    public function __construct()
+    public static function createDefault() : TransparentEmailInterface
     {
-        foreach ($this->getAllServicesClasses() as $class) {
-            $this->addService(new $class());
-        }
+        return new TransparentEmail(self::createServiceCollector());
     }
 
-    private function getAllServicesClasses() : array
+    private static function createServiceCollector() : ServiceCollectorInterface
+    {
+        $collector = new ServiceCollector();
+
+        foreach (self::getAllServicesClasses() as $servicesClass) {
+            $collector->addService(new $servicesClass());
+        }
+
+        return $collector;
+    }
+
+    private static function getAllServicesClasses() : array
     {
         return [
             GmailCom::class,

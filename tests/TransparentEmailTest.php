@@ -10,6 +10,7 @@ use bkrukowski\TransparentEmail\ServiceCollector;
 use bkrukowski\TransparentEmail\ServiceCollectorInterface;
 use bkrukowski\TransparentEmail\Services\TlenPl;
 use bkrukowski\TransparentEmail\TransparentEmail;
+use bkrukowski\TransparentEmail\TransparentEmailFactory;
 
 class TransparentEmailTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,12 +42,12 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
                 'john.doe+alias@gmail.com',
                 'john.doe+alias@gmail.com'
             ],
-            [new TransparentEmail(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
+            [TransparentEmailFactory::createDefault(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'john.doe@example.com'],
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'John.Doe@example.com', true],
-            [new TransparentEmail(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
-            [new TransparentEmail(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
-            [new TransparentEmail(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
+            [TransparentEmailFactory::createDefault(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
+            [TransparentEmailFactory::createDefault(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
+            [TransparentEmailFactory::createDefault(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
         ];
     }
 
@@ -58,7 +59,7 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testDefault(EmailInterface $inputEmail, string $expectedEmail)
     {
-        $this->assertEquals($expectedEmail, (new TransparentEmail())->getPrimaryEmail($inputEmail));
+        $this->assertEquals($expectedEmail, (TransparentEmailFactory::createDefault())->getPrimaryEmail($inputEmail));
     }
 
     public function providerDefault()

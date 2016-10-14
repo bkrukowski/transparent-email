@@ -7,16 +7,16 @@ namespace bkrukowski\TransparentEmail;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
 use bkrukowski\TransparentEmail\Services\ServiceInterface;
 
-class TransparentEmail
+class TransparentEmail implements TransparentEmailInterface
 {
     /**
      * @var ServiceCollectorInterface|ServiceInterface[]
      */
     private $services;
 
-    public function __construct(ServiceCollectorInterface $services = null)
+    public function __construct(ServiceCollectorInterface $services)
     {
-        $this->services = $services ?: new DefaultServiceCollector();
+        $this->services = $services;
     }
 
     public function getPrimaryEmail(EmailInterface $email) : EmailInterface
