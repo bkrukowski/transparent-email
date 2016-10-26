@@ -59,7 +59,8 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testDefault(EmailInterface $inputEmail, string $expectedEmail)
     {
-        $this->assertEquals($expectedEmail, ((new TransparentEmailFactory())->createDefault())->getPrimaryEmail($inputEmail));
+        $outputEmail = ((new TransparentEmailFactory())->createDefault())->getPrimaryEmail($inputEmail);
+        $this->assertEquals($expectedEmail, $outputEmail);
     }
 
     public function providerDefault() : array
