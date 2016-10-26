@@ -42,12 +42,12 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
                 'john.doe+alias@gmail.com',
                 'john.doe+alias@gmail.com'
             ],
-            [TransparentEmailFactory::createDefault(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'john.doe+alias@gmail.com', 'johndoe@gmail.com'],
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'john.doe@example.com'],
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'John.Doe@example.com', true],
-            [TransparentEmailFactory::createDefault(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
-            [TransparentEmailFactory::createDefault(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
-            [TransparentEmailFactory::createDefault(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
+            [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
         ];
     }
 
@@ -59,7 +59,7 @@ class TransparentEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testDefault(EmailInterface $inputEmail, string $expectedEmail)
     {
-        $this->assertEquals($expectedEmail, (TransparentEmailFactory::createDefault())->getPrimaryEmail($inputEmail));
+        $this->assertEquals($expectedEmail, ((new TransparentEmailFactory())->createDefault())->getPrimaryEmail($inputEmail));
     }
 
     public function providerDefault() : array

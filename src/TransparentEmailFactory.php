@@ -13,23 +13,23 @@ use bkrukowski\TransparentEmail\Services\YahooCom;
 
 class TransparentEmailFactory
 {
-    public static function createDefault() : TransparentEmailInterface
+    public function createDefault() : TransparentEmailInterface
     {
-        return new TransparentEmail(self::createServiceCollector());
+        return new TransparentEmail($this->createServiceCollector());
     }
 
-    private static function createServiceCollector() : ServiceCollectorInterface
+    private function createServiceCollector() : ServiceCollectorInterface
     {
         $collector = new ServiceCollector();
 
-        foreach (self::getAllServicesClasses() as $servicesClass) {
+        foreach ($this->getAllServicesClasses() as $servicesClass) {
             $collector->addService(new $servicesClass());
         }
 
         return $collector;
     }
 
-    private static function getAllServicesClasses() : array
+    private function getAllServicesClasses() : array
     {
         return [
             GmailCom::class,

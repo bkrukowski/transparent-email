@@ -27,7 +27,8 @@ use bkrukowski\TransparentEmail\Emails\EmailInterface;
 use bkrukowski\TransparentEmail\Emails\InvalidEmailException;
 
 try {
-    $cleaner = TransparentEmailFactory::createDefault();
+    $factory = new TransparentEmailFactory();
+    $cleaner = $factory->createDefault();
     $inputEmail = new Email('John.Doe+alias@gmail.com');
     /** @var EmailInterface $transformedEmail */
     $transformedEmail = $cleaner->getPrimaryEmail($inputEmail);
