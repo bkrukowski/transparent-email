@@ -1,5 +1,5 @@
 {
-    "name": "bkrukowski/transparent-email",
+    "name": "gridnevalex/transparent-email",
     "description": "Remove aliases from email and get primary email account",
     "type": "library",
     "require": {
