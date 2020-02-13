@@ -5,8 +5,9 @@ namespace bkrukowski\TransparentEmail\Tests\Emails;
 use bkrukowski\TransparentEmail\Emails\EditableEmail;
 use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
+use PHPUnit\Framework\TestCase;
 
-class EditableEmailTest extends \PHPUnit_Framework_TestCase
+class EditableEmailTest extends TestCase
 {
     /**
      * @dataProvider providerRemoveFromLocalPart
@@ -19,7 +20,7 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         $editable = new EditableEmail($email);
         $new = $editable->removeFromLocalPart($toRemove);
         $this->assertNotSame($editable, $new);
-        $this->assertNotContains((string) $new, $toRemove);
+        $this->assertStringNotContainsString((string) $new, $toRemove);
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 

@@ -6,8 +6,9 @@ namespace bkrukowski\TransparentEmail\Tests\Services;
 
 use bkrukowski\TransparentEmail\Emails\Email;
 use bkrukowski\TransparentEmail\Services\YandexRu;
+use PHPUnit\Framework\TestCase;
 
-class YandexRuTest extends \PHPUnit_Framework_TestCase
+class YandexRuTest extends TestCase
 {
     /**
      * @dataProvider providerGetPrimaryEmail
