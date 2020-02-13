@@ -28,6 +28,8 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
         return [
             [new Email('jane.doe.1990@gmail.com'), '.'],
             [new Email('janedoe1990@gmail.com'), '.'],
+            [new Email('jane.doe.1990@yandex.ru'), '.'],
+            [new Email('janedoe1990@yandex.ru'), '.'],
         ];
     }
 
@@ -53,6 +55,8 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
             [new Email('John.Doe+alias@gmail.com', true), '+', 'John.Doe@gmail.com'],
             [new Email('JohnDoe-alias@gmail.com'), '-', 'johndoe@gmail.com'],
             [new Email('JohnDoe@gmail.com'), '-', 'johndoe@gmail.com'],
+            [new Email('JohnDoe+alias@yandex.ru'), '+', 'johndoe@yandex.ru'],
+            [new Email('JohnDoe+alias@mail.ru'), '+', 'johndoe@mail.ru'],
         ];
     }
 
@@ -77,6 +81,10 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
             [new Email('jane.doe@foo.bar'), 'gmail.com'],
             [new Email('jane.doe@foo.bar'), 'foo.bar'],
             [new Email('jane.doe@gmail.com'), 'foo.bar'],
+            [new Email('jane.doe@yandex.ru'), 'yandex.ru'],
+            [new Email('jane.doe@mail.ru'), 'mail.ru'],
+            [new Email('jane.doe@yandex.ru'), 'foo.bar'],
+            [new Email('jane.doe@mail.ru'), 'foo.bar'],
         ];
     }
 
@@ -101,6 +109,8 @@ class EditableEmailTest extends \PHPUnit_Framework_TestCase
             [new Email('jane.doe@foo.bar'), 'jane'],
             [new Email('jane.doe@foo.bar'), 'john'],
             [new Email('jane.doe@gmail.com'), 'jane.doe'],
+            [new Email('jane.doe@yandex.ru'), 'jane.doe'],
+            [new Email('jane.doe@mail.ru'), 'jane.doe'],
         ];
     }
 

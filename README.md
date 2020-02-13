@@ -17,6 +17,8 @@ To detect multi-accounts on your website.
 * [33mail.com](https://www.33mail.com)
 * [outlook.com](http://outlook.com)
 * [yahoo.com](http://mail.yahoo.com)
+* [yandex.ru](https://yandex.ru/)
+* [mail.ru](https://mail.ru/)
 
 ## Usage
 
