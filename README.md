@@ -58,3 +58,11 @@ Yahoo uses the following pattern[*](https://help.yahoo.com/kb/SLN16026.html):
 
 Therefore we do not know what is the real email, so in this case result will be `baseName@yahoo.com`,
 which actually does not exist.
+
+##Yandex.ru
+In official [documentation](https://yandex.ru/support/mail/web/preferences/about-sender/additional-addresses.html) you can find some use-cases about aliases usage.
+
+##Mail.ru
+There's no official documentation about aliases here, but you can create them with 2 ways:
+* `janedoe+alias@mail.ru` will be redirected to `janedoe@mail.ru`
+* `janeDoe@MAIL.RU` will be redirected to `janedoe@mail.ru`
