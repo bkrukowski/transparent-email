@@ -20,7 +20,7 @@ class EditableEmailTest extends TestCase
         $editable = new EditableEmail($email);
         $new = $editable->removeFromLocalPart($toRemove);
         $this->assertNotSame($editable, $new);
-        $this->assertStringNotContainsString((string) $new, $toRemove);
+        $this->assertNotContains((string) $new, $toRemove);
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 

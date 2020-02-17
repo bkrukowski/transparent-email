@@ -6,7 +6,7 @@
         "php": "^7.0.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5.2",
+        "phpunit/phpunit": "6.5.14",
         "satooshi/php-coveralls": "^1.0.1",
         "codacy/coverage": "^1.0.3"
     },
