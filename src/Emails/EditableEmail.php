@@ -25,6 +25,14 @@ class EditableEmail implements EmailInterface
         return $copy;
     }
 
+    public function replaceInLocalPart(string $toReplace, string $replacement) : EditableEmail
+    {
+        $copy = clone $this;
+        $copy->localPart = str_replace($toReplace, $replacement, $this->localPart);
+
+        return $copy;
+    }
+
     public function removeSuffixAlias(string $delimiter) : EditableEmail
     {
         $copy = clone $this;

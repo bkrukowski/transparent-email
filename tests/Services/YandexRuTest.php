@@ -28,6 +28,7 @@ class YandexRuTest extends TestCase
             ['fOObar@YAndEX.ru', 'foobar@yandex.ru'],
             ['foobar+alias@yandex.ru', 'foobar@yandex.ru'],
             ['JaneDoe@ya.ru', 'janedoe@yandex.ru'],
+            ['Jane.Doe@ya.ru', 'jane-doe@yandex.ru'],
         ];
     }
 

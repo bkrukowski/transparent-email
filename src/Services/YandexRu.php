@@ -13,6 +13,7 @@ class YandexRu implements ServiceInterface
     {
         return (new EditableEmail($email))
             ->removeSuffixAlias('+')
+            ->replaceInLocalPart('.', '-')
             ->lowerCaseLocalPartIf(true)
             ->setDomain($this->mapDomain($email->getDomain()));
     }
