@@ -40,6 +40,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase
             ['.johndoe@example.com', true],
             ['Jane.Doe@Example.COM', false, 'Jane.Doe', 'example.com', true],
             ['Jane.Doe@Example.COM', false, 'jane.doe', 'example.com'],
+            ['Тест.Тест@Example.COM', false, 'Тест.Тест', 'example.com', true],
+            ['Тест.Тест@Example.COM', false, 'тест.тест', 'example.com'],
         ];
     }
 }
